@@ -27,11 +27,59 @@ fn variables() {
 
 // https://doc.rust-lang.org/book/ch03-02-data-types.html
 fn datatypes() {
+    // let _guess: u32 = "42".parse().expect("NaN");
+    // // let guess: u32 = "42".parse() 랑
+    // // let guess = "42".parse::<u32>() 도 가능
+
+    // let _iteral = 0xff;
+    // let _iteral = 0b0001;
+    // let _iteral = 0o12;
+    // let _iteral = 1_541;
+    // let _iteral = b'A'; // 'A' 를 하면 'A' 가 저장되지만, b'A' 하면 'A' 의 ascii
+    // // 123123i32 같이 해도 형 지정이 됨
+
+    // let _floating_point = 1.54; // 1.54f64 / double
+    // let _floating_point: f32 = 1.54; // 1.54f32 / float
+
+    // println!("sum: {}", 5 + 15);
+    // println!("sub: {}", 15 - 5);
+    // println!("mul: {}", 2 * 2);
+    // println!("div: {}", 10.0 / 3f64);
+    // println!("div (truncated): {}", -10 / 3);
+    // println!("remain: {}", 10 % 3);
+
+    // let _contition = true;
+    // let _contition = false;
+
+    // if _contition {
+    //     println!("it is true");
+    // } else {
+    //     println!("it is false");
+    // }
+
+    // let _c = 'z';
+    // let _c = '와';
+    // let _c = '♨';
+    // // 4바이트 unicode scalar
+    // // 일반적은 char 랑 조금 다름
     
+    // let _tup = (154, 154.1, true);
+    // let _tup: (&str, char, f64) = ("Hello", 'a', 154.1);
+    // let _tup = (1, 5, 4);
+
+    // let (x, y, z) = _tup; // 구조 분해 할당. js/ts 에 있던 그거
+    // println!("x: {x}, y: {y}, z: {z}");
+    
+    // let x = _tup.0;
+    // let y = _tup.1;
+    // let z = _tup.2;
+    // println!("x: {x}, y: {y}, z: {z}");
+
+    // let _tup: () = (); // 이런 형식은 unit 이라고 부름
+
 }
 
-
 fn main() {
-    // variables();
+    variables();
     datatypes();
 }
