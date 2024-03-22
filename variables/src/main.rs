@@ -1,3 +1,4 @@
+use std::io;
 
 // https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html
 // const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
@@ -76,6 +77,36 @@ fn datatypes() {
     // println!("x: {x}, y: {y}, z: {z}");
 
     // let _tup: () = (); // 이런 형식은 unit 이라고 부름
+
+    // let _array = [1, 2, 3, 4, 5];
+    // let _array: [i32; 3] = [1, 2, 3];
+    // let _array = [1; 5]; // [1, 1, 1, 1, 1] 로 초기화 됨
+    // let _array = [1, 2, 3, 4, 5];
+    
+    // let _first = _array[0];
+    // let _second = _array[1];
+
+    // println!("{_first} {_second}");
+
+    let a = [1, 2, 3, 4, 5];
+
+    println!("Please enter an array index.");
+    let mut index = String::new();
+
+    // 5 이상의 숫자를 입력하면 runtime error 가 발생함
+    // C/CXX 와 같은 low-level 은 메모리 접근을 허용하지만, rust 는 index out of range exception 을 발생시키고 실행을 중지함.
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect("Index entered was not a number");
+
+    let element = a[index];
+
+    println!("The value of the element at index {index} is: {element}");
 
 }
 
