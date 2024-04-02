@@ -62,6 +62,14 @@ ownership을 이해하고 나면, stack과 heap에 대해 그리 자주 생각�
 하지만 ownership의 주 목적이 heap의 데이터를 관리한다는 것을 알게 되면, 왜 이런 방식으로 작동하는지 알기 쉬워질 것.
 */
 
+
+// ownership rules
+/*
+* 러스트에서 각각의 값은 owner를 가지고 있음
+* 한번의 하나의 owner만 존재할 수 있음
+* owner가 스코프 밖으로 나가게 되면, 값은 삭제될 것임
+*/
+
 fn main() {
     println!("Hello, world!");
 }
