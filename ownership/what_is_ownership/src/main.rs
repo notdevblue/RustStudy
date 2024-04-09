@@ -115,6 +115,31 @@ fn main() {
     두번 하게 되면, 그것 또한 버그임.
     우리는 반드시 하나의 할당에 하나의 할당 해제가 필요함.
 
-    Rust takes a different path: 부터 해야 힘 https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#memory-and-allocation
+    Rust는 다른 방식을 택함.
+    메모리를 잡고 있는 변수가 스코프를 벗어날 경우, 자동으로 메모리를 반환함
     */
+
+    {
+        let _s = String::from("Install Gentoo"); // _s는 이 스코프에서 유효함
+
+        // _s로 무언가 함
+        // 으쌰으쌰
+        // 영차영차
+    }
+    // 스코프 밖이니까 여기서부터는 _s가 유효하지 않음.
+
+    /*
+    String이 필요로 하는 메모리를 allocator에 반환하는 자연스러운 곳이 있음: _s가 스코프 밖으로 벗아나는 곳임.
+    변수가 스코프 밖으로 벗어나게 되면, Rust는 특별한 함수를 호출함. drop 이라고 불림.
+    String 클래스를 만든 사람이 drop 에다가 메모리를 반환하는 코드를 작성할 수 있음.
+    그리고 위의 예시에선 Rust는 자동으로 닫는 중괄호 부분에서 drop 을 호출함.
+
+    C++의 RAII 패턴이랑 상당히 동일함.
+    
+    이 패턴은 Rust 코드가 작성되는 방식의 지대한 영향을 미침.
+    지금은 상당히 간단하게 보이지만, Heap에 할당한 데이터를 여러 변수가 사용하고 싶을 때 코드는 예상하지 못한 방식으로 실행될 수 있음.
+    */
+
+    // https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#variables-and-data-interacting-with-move
+
 }
