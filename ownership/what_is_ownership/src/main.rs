@@ -219,7 +219,7 @@ fn main() {
 
     // let s1 = String::from("Gentoo");
 
-    // let (s2, len) = calculate_length(s1);
+    // let (s2, len) = calculate_length(s1); // s1은 이동됨
 
     // println!("The length of '{}' is {}.", s2, len);
 
