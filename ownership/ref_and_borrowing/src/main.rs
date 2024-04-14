@@ -4,9 +4,32 @@ fn main() {
     dangling();
 }
 
+// 레퍼런스 규칙
+/*
+1. 하나의 mutable 레퍼런스를 가지거나
+   여러개의 immutable 레퍼런스를 가질 수 있음
+
+2. 레퍼런스는 항상 유효해야 함.
+*/
+
+
 fn dangling() {
-    // https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#dangling-references
+    /*
+    포인터 있는 언어는 실수로 dangling pointer 를 만들기 쉬움
+    다른 무언가에게 제공됬을 가능성이 있는 주소를 가리키는 포인터를 의미함.
+
+    러스트에선 이걸 컴파일러가 막음
+    */
+
+    let ref_to_nothing = dangle();
 }
+
+fn dangle() -> &String { // string refenrence 를 반환함
+    let s = String::from("hello"); // new string 임
+
+    &s // 레퍼런스를 반환함. 소유권은 넘겨주지 않음
+} // s가 스코프를 벗어났기 때문에 drop됨!
+// 문제 없이 작동하게 하려면 소유권을 넘겨주어야 함
 
 fn restriction() {
     // let mut s = String::from("Gentoo");
