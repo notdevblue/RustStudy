@@ -38,7 +38,7 @@ fn defining_and_instantiating() {
     let user = build_user(String::from("email@email.com"), String::from("HelloWorld"));
     println!("{}", user.email);
 
-    let user2 = User {
+    let _user2 = User {
         active: user1.active,
         username: user1.username.clone(),
         email: String::from("another@email.com"),
@@ -46,7 +46,7 @@ fn defining_and_instantiating() {
     };
     // 이렇게도 만들 수 있지만
 
-    let user2 = User {
+    let _user2 = User {
         email: String::from("another@email.com"),
         ..user1
         // .. 은 남은 필드를 의미함
