@@ -6,7 +6,74 @@ slices 는 컬렉션의 연속되는 요소들을 컬랙션 통째를 가지는 
 fn main() {
     tedious_way();
     string_slices();
+    remake_first_word_using_slice();
+    string_blahblahblah_as_blahblahblah();
+    other_slices();
 }
+
+fn other_slices() {
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];
+    assert_eq!(&[2, 3], slice);
+    // array 도 slice 가능함
+}
+
+fn string_blahblahblah_as_blahblahblah() {
+    // // https://doc.rust-lang.org/book/ch04-03-slices.html#string-literals-as-slices
+
+    // let s = "Install Gentoo";
+    // // &str 임.
+    // // 바이너리의 특정한 부분을 가리키고 있기 때문임
+    // // 그래서 immutable
+
+    // let s = String::from("Hello Gentoo");
+
+    // first_word(&s[0..9]);   // 가능함 (&str)
+    // first_word(&s[..]);     // 가능함 (&str)
+    // first_word(&s);         // 가능함 (&str)
+
+    // let s = "string literal";
+    // first_word(&s[0..9]);   // 가능함
+    // first_word(&s[..]);     // 가능함
+    // first_word(s);          // 가능함
+}
+
+// fn first_word(s: &str) -> &str {
+//     let bytes = s.as_bytes();
+
+//     for (i, &item) in bytes.iter().enumerate() {
+//         if item == b' ' {
+//             return &s[..i];
+//         }
+//     }
+
+//     &s[..]
+// }
+
+fn remake_first_word_using_slice() {
+    // let s = String::from("Install Gentoo");
+    // let word = first_word(&s);
+
+    // // s.clear();
+    // // word는 s를 향하는 레퍼런스를 가지고 있음.
+    // // 컴파일 단계에서 clear를 막음
+    // // s 를 mutable 로 바꾸고 first_word 를 mutable ref 로 바꿔도
+    // // s.clear() 함수를 사용하면서 mutable borrow 가 발생하기 때문에 이거도 불가능함
+
+    // println!("{}", word);
+}
+
+// fn first_word(s: &String) -> &str {
+//     let bytes = s.as_bytes();
+
+//     for (i, &item) in bytes.iter().enumerate() {
+//         if item == b' ' {
+//             return &s[..i];
+//         }
+//     }
+
+//     &s[..]
+// }
 
 fn string_slices() {
     // // https://doc.rust-lang.org/book/ch04-03-slices.html#string-slices
@@ -48,7 +115,6 @@ fn string_slices() {
     // // let b = &multibyte[..1];
     // // println!("{b}");
     // // 이 섹션에선 ascii 문자만 사용한다고 가정
-
 }
 
 fn tedious_way() {
