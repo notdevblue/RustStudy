@@ -9,7 +9,7 @@ fn main() {
 }
 
 fn tuple_structs() {
-    
+    // https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types
 }
 
 fn defining_and_instantiating() {
