@@ -4,13 +4,62 @@ fn main() {
     println!("# struct defining and instantiating #\n");
     defining_and_instantiating();
 
-    println!("\n# tuple structs #\n");
-    tuple_structs();
+    println!("\n# other structs #\n");
+    other_structs();
+
+    println!("\n# ownership if struct data structs #\n");
+    ownership_of_struct_data();
 }
 
-fn tuple_structs() {
-    // https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types
+fn ownership_of_struct_data() {
+    // https://doc.rust-lang.org/book/ch05-01-defining-structs.html#ownership-of-struct-data
+
+    // 아레에서 &str 슬라이스 타입이 아닌 String 형식의 스트링 전부를 들고오는 방식을 탁함
+    // 레퍼런스를 가지게 할 수도 있음
+    // 하지만 이걸 위해서는 lifetime 라는 것을 사용해야 함
+    // lifetime 은 struct 에서 레퍼런스로 가진 데이터가 struct 가 유효한 동안 유효한지 보장함
+
+    // let user = User2 {
+    //     email: "install@gentoo.always"
+    // };
 }
+
+// struct User2 {
+//     email: &str // 컴파일러가 lifetime 지정자가 필요하다고 불평할거임
+// }
+// 챕터10에서 고칠 것
+
+
+fn other_structs() {
+    // https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types
+
+    let mycolor = Color(225, 123, 2);
+    let mypoint = Point(1, 5, 4);
+    // mycolor 과 mypoint 의 값은 다름.
+    // 다른 tuple struct의 instance 이기 때문
+    // 필드의 값이 같아도 사로 다른 인스턴스임
+    // 이거를 제외하고는 튜플과 동일함.
+
+    println!("{} {} {}", mycolor.0, mycolor.1, mycolor.2);
+    
+    println!("{} {} {}", mypoint.0, mypoint.1, mypoint.2);
+
+    let sub = AlwaysEqual;
+    let sub2 = AlwaysEqual;
+    assert_eq!(sub, sub2);
+    // 이 유닛 구조체의 인스턴스는 항상 동일함
+}
+
+// Unit-like struct
+// trait 을 구현하고 싶은데 아무 데이터도 넣고 싶지 않을 때
+// () 와 비슷하게 동작함
+#[derive(PartialEq, Debug)]
+struct AlwaysEqual;
+
+// tuple struct
+// tuple 에 이름을 넣어주고 싶을 때
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
 
 fn defining_and_instantiating() {
     let user1 = User {
