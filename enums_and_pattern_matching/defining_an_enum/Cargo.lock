@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "enums_and_pattern_matching"
+name = "defining_an_enum"
 version = "0.1.0"
