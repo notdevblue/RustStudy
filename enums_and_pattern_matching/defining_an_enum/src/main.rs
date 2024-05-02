@@ -38,11 +38,18 @@ struct IpAddr {
     kind: IpAddrKind,
     address: String,
 }
+// 이러한 개념을 enum만 통해 한다면 더 쉬움
+// enum 요소에 값을 넣을 수 있음. (?왜됨)
+
+enum IpAddrEnum {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
 
 fn route(ip_kind: &IpAddrKind) {
     match ip_kind {
         IpAddrKind::V4 => println!("Routed IPv4"),
-        IpAddrKind::V6 => println!("Routed IPv6")
+        IpAddrKind::V6 => println!("Routed IPv6"),
     }
 }
 
@@ -50,6 +57,13 @@ fn print_ipaddr(ip_addr: &IpAddr) {
     route(&ip_addr.kind);
     println!("Address: {}", ip_addr.address);
 }
+
+fn print_ipaddr_enum(ip_addr: &IpAddrEnum) {
+    match ip_addr {
+        IpAddrEnum::V4(one, two, three, four) => println!("Routed IpV4, address: {one}.{two}.{three}.{four}"),
+        IpAddrEnum::V6(ip) => println!("Routed IpV4, address: {ip}"),
+    }
+} // 안에 있는 요소도 이렇게 접근이 됨
 
 fn main() {
     // route(&IpAddrKind::V4);
@@ -68,4 +82,19 @@ fn main() {
 
     print_ipaddr(&home);
     print_ipaddr(&loopback);
+
+    println!("");
+
+    let home = IpAddrEnum::V4(127, 0, 0, 1);
+    let loopback = IpAddrEnum::V6(String::from("::0"));
+    // enum의 요소가 인스턴스 생성자가 됨
+    // 그리고 서로 다른 타입을 가질 수 있음
+    // 사실 IP 저장하는건 너무 흔해서 스텐다드 라이브러리에 이미 있음
+    // IpAddr.
+    // enum안에 데이터는 struct도 들어가고, 또 다른 enum이 들어갈 수도 있음
+
+    print_ipaddr_enum(&home);
+    print_ipaddr_enum(&loopback);
+
+    // Let’s look at another example of an enum in Listing 6-2: this one has a wide variety of types embedded in its variants. 해야 함
 }
