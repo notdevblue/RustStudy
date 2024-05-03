@@ -65,6 +65,45 @@ fn print_ipaddr_enum(ip_addr: &IpAddrEnum) {
     }
 } // 안에 있는 요소도 이렇게 접근이 됨
 
+enum Message {
+    Quit,
+    // 아무 데이터랑도 연관되지 않음
+    
+    Move { x: i32, y: i32 },
+    // Struct 처럼 이름을 가진 필드가 있음
+
+    Write(String),
+    // 하나의 String을 포함함
+
+    ChangeColor(i32, i32, i32),
+    // 세가지의 i32값을 포함함
+}
+/*
+enum을 이러한 방식으로 정의하는 것은 여러 구조체를 정의하는거랑 비슷함
+하지만 enum은 struct 키워드를 사용하지 않고, Message 타입 안에 enum 변형들이 묶여있다는 것임.
+*/
+
+struct QuitMessage;
+struct MoveMessage {
+    x: i32,
+    y: i32,
+}
+struct WriteMessage(String);
+struct ChangeColorMessage(i32, i32, i32, i32);
+// 이렇게 구조체를 정의하면 각기 다 다른 타입이라, 이것들을 받는 함수를 정의하기 어려움.
+// 하지만 Message enum 안에 변형들은 일단 Message 타입이기 때문에 쉬움
+
+/*
+enum과 구조체의 또다른 공통점은 메소드를 impl 블럭 안에서 구현할 수 있다는 것임
+(이게 왜 enum인지 모르겠다 이젠)
+*/
+
+impl Message {
+    fn call(&self) {
+        println!("Method called");
+    }
+}
+
 fn main() {
     // route(&IpAddrKind::V4);
     // route(&IpAddrKind::V6);
@@ -96,5 +135,6 @@ fn main() {
     print_ipaddr_enum(&home);
     print_ipaddr_enum(&loopback);
 
-    // Let’s look at another example of an enum in Listing 6-2: this one has a wide variety of types embedded in its variants. 해야 함
+    let msg = Message::Move { x: 1, y: 2 };
+    msg.call(); // msg가 메소드에 전달되는 self임
 }
